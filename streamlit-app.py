@@ -137,10 +137,7 @@ def collect_mentor_state_contents(s3_client, bucket_name):
                     if isinstance(v, dict):
                         val = json.dumps(v, separators=(", ", ": "), ensure_ascii=False)
                     elif isinstance(v, list):
-                        if len(v) > 10:
-                            val = "[" + ", ".join(map(str, v[:10])) + ", ...]"
-                        else:
-                            val = json.dumps(v, ensure_ascii=False)
+                        val = "[" + ", ".join(map(str, v)) + "]"
                     else:
                         val = json.dumps(v, ensure_ascii=False)
                     lines.append(f"{k}: {val}")
